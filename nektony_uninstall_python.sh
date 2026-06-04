@@ -1,4 +1,25 @@
 #!/bin/bash
+#
+# Nektony Python 3 uninstaller for macOS
+# https://nektony.com/how-to/uninstall-python-on-mac
+#
+# What it does:
+# - Detects active Python 3.x version
+# - Removes app bundle + framework + symlinks
+# - Cleans receipts (.bom, .plist) in /private/var/db/receipts
+# - Removes /private/var/folders org.python.* cache folders
+# - Removes ~/Library/Python user packages
+# - Cleans __pycache__ folders and .pyc files recursively
+# - Removes Recent Documents reference
+#
+# Tested on: macOS Sequoia 15.5, Tahoe 26.4.1"]
+# License: MIT
+#
+# Acknowledgement: Inspired by Charles Severance's uninstall-python3
+# (https://github.com/csev/uninstall-python3) — extended with deep cleanup logic
+# that covers receipts, system cache folders, user packages, and bytecode artefacts.
+#
+# Copyright (c) 2026 Nektony
 
 # Detect installed Python 3 version (e.g. 3.13)
 PYTHON_VERSION=$(ls /Library/Frameworks/Python.framework/Versions/ | grep -E '^3\.[0-9]+$' | sort -V | tail -n 1)
